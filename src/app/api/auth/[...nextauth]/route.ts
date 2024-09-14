@@ -16,24 +16,23 @@ export const authOptions: NextAuthOptions = {
           const { email, password } = credentials;
 
           if (!email || !password) {
-            throw new Error("لطفا اطلاعات معتبر وارد نمایید");
+            throw new Error("Please enter valid information...");
           }
 
           const user = await User.findOne({ email });
 
           if (!user) {
-            throw new Error("لطفا ابتدا حساب کاربری ایجاد نمایید");
+            throw new Error("Please create an account first...");
           }
 
           const isValid = await verifyPassword(password, user.password);
 
-          if (!isValid) throw new Error("ایمیل یا رمز عبور اشتباه است");
+          if (!isValid) throw new Error("Email or password is incorrect");
 
           return { email };
-
         } catch (err) {
           console.log(err);
-          throw new Error("مشکلی در سرور رخ داده است");
+          throw new Error("A problem has occurred on the server");
         }
       },
     }),
