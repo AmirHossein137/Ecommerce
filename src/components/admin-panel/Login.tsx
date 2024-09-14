@@ -7,7 +7,7 @@ const Login = () => {
     <div className="bg-black min-h-screen grid place-items-center">
       <button
         className="bg-gray-300 px-8 py-4 flex gap-2 items-center rounded-lg"
-        onClick={() => signIn("google")}
+        onClick={() => signIn()}
       >
         <FcGoogle size={30} />
         Sign In With Google
