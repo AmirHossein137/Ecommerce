@@ -4,12 +4,12 @@ import { useAppSelector } from '@/redux/hooks'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 
-const layout = () => {
+const Layout = () => {
 
   const isLoading = useAppSelector((store) => store.loadingReducer);
-  const { data: session } = useSession();
+  const { data: Session } = useSession();
 
-  if(!session?.user){
+  if(!Session?.user){
     return <Login />
   }
 
@@ -18,4 +18,4 @@ const layout = () => {
   )
 }
 
-export default layout
+export default Layout
