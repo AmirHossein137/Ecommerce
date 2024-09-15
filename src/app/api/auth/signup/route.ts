@@ -3,12 +3,10 @@ import { NextResponse } from "next/server";
 import User from "@/models/User";
 import { hashPassword } from "@/utils/auth";
 
-
-
-export default async function POST(req:{body: PromiseLike<{ email: string; password: string; }>}) {
+export async function POST(req : Request) {
   try {
     await connectDB();
-    const { email, password } = await req.body;
+    const { email, password } = await req.json();
     if (!email || !password) {
       return NextResponse.json(
         { error: "Please enter valid information" },

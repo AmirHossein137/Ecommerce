@@ -3,6 +3,8 @@ import React from "react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type Registered = {
   email: string;
@@ -12,16 +14,21 @@ type Registered = {
 const SignUp = () => {
   const form = useForm<Registered>();
   const { register, handleSubmit } = form;
+  const router = useRouter()
 
   const onSubmit: SubmitHandler<Registered> = async (data) => {
     const { email, password } = data;
-    const res = await fetch("/api/auth/signup", {
+    const result = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-    const result = await res.json();
-    console.log(result);
+    const datas = await result.json();
+    console.log(datas)
+    if (result.status === 201) {
+      toast.success("Account Created");
+      router.push('/signin')
+    }
   };
 
   return (
