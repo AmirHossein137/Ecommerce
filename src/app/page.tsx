@@ -1,9 +1,13 @@
-import {Button} from "@nextui-org/button";
+"use client"
+
+import NavBar from "@/components/front-end/NavBar";
+import TrendingProducts from "@/components/front-end/TrendingProducts";
 
 export default function Home() {
   return (
-    <div>
-      <Button>Press me</Button>
-    </div>
+    <main>
+      <NavBar />
+      <TrendingProducts />
+    </main>
   );
 }

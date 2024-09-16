@@ -12,7 +12,7 @@ const SideBar = () => {
   return (
     <div className="bg-white w-[300px] min-h-screen p-4 shrink-0">
       <div className="flex items-center justify-center mt-2">
-        <Image src={Logo} width={200} height={60} />
+        <Image src={Logo} width={200} height={60} alt="logo"/>
       </div>
       <ul className="space-y-4 mt-8">
         {menus.map((menu, index) => (
