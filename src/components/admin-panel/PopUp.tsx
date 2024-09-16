@@ -10,6 +10,8 @@ interface PropsType {
   setUpdateTable: Dispatch<SetStateAction<boolean>>;
 }
 
+
+
 const PopUp = ({ setOpenPop, setUpdateTable }: PropsType) => {
   const productData = useAppSelector((state) => state.productReducer);
   const dispatch = useAppDispatch();
@@ -22,9 +24,9 @@ const PopUp = ({ setOpenPop, setUpdateTable }: PropsType) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(setLoading(true));
-    axios
-      .post(`/api/edit_product/${productData._id}`, inputData)
+    axios.put(`/api/edit_product/${productData._id}`, inputData)
       .then((res) => {
+        console.log(res);
         toast.success("Product Updated Successfullt...");
         setUpdateTable((prevState) => !prevState);
       })
@@ -33,6 +35,7 @@ const PopUp = ({ setOpenPop, setUpdateTable }: PropsType) => {
         dispatch(setLoading(false));
         setOpenPop(false);
       });
+    console.log(inputData)
   };
 
   return (
@@ -52,7 +55,7 @@ const PopUp = ({ setOpenPop, setUpdateTable }: PropsType) => {
             placeholder="Name"
             value={inputData.name}
             onChange={(e) =>
-              setIputData({ ...inputData, name:e.target.value })
+              setIputData({ ...inputData, name: e.target.value })
             }
             required
           />

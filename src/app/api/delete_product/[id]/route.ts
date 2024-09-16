@@ -2,20 +2,13 @@ import Products from "@/models/Products";
 import connectDB from "@/utils/connectDB";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(request: NextRequest, URLParams:any) {
+export async function DELETE(request: NextRequest, URLParams: any) {
   try {
-    const body = await request.json();
     const id = URLParams.params.id;
-    console.log(id)
-    const { name, category, price } = body;
-
+    console.log(id);
     await connectDB();
-    const data = await Products.findByIdAndUpdate(id, {
-      name,
-      category,
-      price,
-    });
-    return NextResponse.json({ msg: "Updated Successfully", data });
+    await Products.findByIdAndDelete(id);
+    return NextResponse.json({ msg: "Product Deleted Successfully" });
   } catch (err) {
     console.log(err);
     return NextResponse.json(
