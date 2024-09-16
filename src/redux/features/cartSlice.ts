@@ -25,12 +25,12 @@ export const cartSlice = createSlice({
         });
       }
     },
-    removeFromCart: (state, action: PayloadAction<IProduct>) => {
-       const {id} = action.payload ;
-       return state.filter((elem) => elem.id !== id)
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      return state.filter((elem) => elem.id !== id);
     },
   },
 });
 
-export const { addToCart , removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

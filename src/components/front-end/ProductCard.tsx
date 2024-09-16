@@ -3,6 +3,8 @@ import { useAppDispatch } from "@/redux/hooks";
 import React from "react";
 import toast from "react-hot-toast";
 import { Star , ShoppingCart } from 'lucide-react';
+import {Button} from "@nextui-org/react";
+import Image from "next/image";
 
 interface PropsType {
   id: string;
@@ -34,9 +36,9 @@ const ProductCard: React.FC<PropsType> = ({
   };
 
   return (
-    <div className="border border-gray-200">
+    <div className="border border-gray-200 p-5 rounded-lg">
       <div className="text-center border-b border-gray-200 ">
-        <img className="inline-block" src={img} alt={title} />
+        <Image width={500} height={500} className="w-full h-80 object-contain rounded-lg" src={img} alt={title} />
       </div>
       <div className="px-8 py-4">
         <p className="text-gray-500 text-sm font-medium">{category}</p>
@@ -49,14 +51,14 @@ const ProductCard: React.FC<PropsType> = ({
         </div>
       </div>
       <div className="flex justify-between items-center mt-4">
-        <h2>${price}</h2>
-        <div className="flex gap-2 items-center bg-pink-600 text-white px-4 py-2 cursor-pointer hover:bg-blue-600"
+        <h2 className="text-lg font-bold text-slate-800">${price}</h2>
+        <Button color="danger" className="flex gap-2 items-center text-white px-4 py-2 cursor-pointer transition duration-200 hover:bg-pink-800"
         onClick={addProductToCart}
         >
             <ShoppingCart  />
             Add To Cart
 
-        </div>
+        </Button>
       </div>
     </div>
   );

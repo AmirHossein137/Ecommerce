@@ -22,7 +22,7 @@ const Cart = ({ cartCount }: any) => {
 
   return (
     <>
-      <Button className="flex bg-transparent" onPress={onOpen}>
+      <Button className="flex bg-transparent h-16" onPress={onOpen}>
         <div className="relative flex">
           <ShoppingCart size={30} />
           <div className="absolute -top-4 -right-4 w-[30px] h-[30px] rounded-full flex items-center justify-center bg-rose-500 text-white">

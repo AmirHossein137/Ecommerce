@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import { Input } from "@nextui-org/react";
+import { SearchIcon } from "../modules/SearchIcon";
 
 interface IProduct {
   _id: string;
@@ -13,6 +15,7 @@ interface IProduct {
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     axios
@@ -36,17 +39,38 @@ const TrendingProducts = () => {
           <div>Top Sellers</div>
         </div>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 xl-grid-cols-4 mt-8">
-        {products.map((item: IProduct) => (
-          <ProductCard
-            key={item._id}
-            id={item._id}
-            img={item.imgSrc}
-            category={item.category}
-            title={item.name}
-            price={item.price}
+      <div className="w-full flex items-center justify-center my-5">
+        <div className="flex items-center justify-center w-[650px] max-w-full rounded-2xl shadow-md">
+          <Input
+            label="Search"
+            isClearable
+            radius="lg"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Type to search..."
+            startContent={
+              <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+            }
           />
-        ))}
+        </div>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 xl-grid-cols-4 mt-8">
+        {products
+          .filter((item: IProduct) => {
+            return search.toLowerCase() === ""
+              ? item
+              : item.name.toLowerCase().includes(search);
+          })
+          .map((item: IProduct) => (
+            <ProductCard
+              key={item._id}
+              id={item._id}
+              img={item.imgSrc}
+              category={item.category}
+              title={item.name}
+              price={item.price}
+            />
+          ))}
       </div>
     </div>
   );

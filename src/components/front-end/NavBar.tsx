@@ -2,14 +2,21 @@ import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../app/logo.svg";
-import { Input } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Search, ShoppingCart } from "lucide-react";
 import Cart from "./Cart";
-
+import { signOut, useSession } from "next-auth/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+import { CircleUserRound } from "lucide-react";
 
 const NavBar = () => {
   const cartCount = useAppSelector((state) => state.cartReducer.length);
+
+  const { data: session } = useSession();
 
   return (
     <div className="py-4 bg-white top-0 sticky shadow-sm">
@@ -18,19 +25,31 @@ const NavBar = () => {
           <Link href={"/"}>
             <Image src={Logo} width={200} height={60} alt="logo" />
           </Link>
-          <div className="lg:flex items-center hidden w-full border overflow-hidden border-blue-400 rounded-2xl max-w-[500px]">
-            <Input
-              type="search"
-              label=""
-              labelPlacement="outside"
-              placeholder="Search For Products..."
-            />
-            <Button className="rounded-tl-none rounded-bl-none" color="primary">
-              <Search />
-            </Button>
-          </div>
-          <div>
-            <Cart cartCount={cartCount}/>
+          <div className="flex items-center gap-5">
+            {!session?.user ? (
+              <Link href={'/signin'} className="border border-gray-200 p-2 rounded-md">
+                SignIn
+              </Link>
+            ) : (
+              <div>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button variant="bordered">
+                      <CircleUserRound />
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Static Actions">
+                    <DropdownItem key="dash">
+                      <Link href={"/admin/dashboard"}>Dashboard</Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <button onClick={() => signOut()}>SignOut</button>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+            )}
+            <Cart cartCount={cartCount} />
           </div>
         </div>
       </div>

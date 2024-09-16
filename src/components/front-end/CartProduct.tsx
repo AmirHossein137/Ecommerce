@@ -20,10 +20,12 @@ const CartProduct: React.FC<PropsTypes> = ({
 }) => {
   const dispatch = useAppDispatch();
 
+  console.log(id);
+
   return (
     <div className="flex justify-between items-center">
-      <div className="flex items-center ga-4">
-        <img className="h-[80px]" src={img} alt={title} />
+      <div className="flex items-center gap-4">
+        <img className="w-[80px] h-[80px] rounded-xl" src={img} alt={title} />
         <div className="space-y-2">
           <h3 className="font-medium">{title}</h3>
           <p className="text-gray-600 text-sm">
