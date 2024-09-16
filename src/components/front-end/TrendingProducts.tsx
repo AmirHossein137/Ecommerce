@@ -7,7 +7,7 @@ interface IProduct {
   imgSrc: string;
   fileKey: string;
   name: string;
-  price: string;
+  price: number;
   category: string;
 }
 
@@ -36,7 +36,7 @@ const TrendingProducts = () => {
           <div>Top Sellers</div>
         </div>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl-grid-cols-4 mt-8">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 xl-grid-cols-4 mt-8">
         {products.map((item: IProduct) => (
           <ProductCard
             key={item._id}
