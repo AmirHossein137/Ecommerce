@@ -2,7 +2,7 @@ import Products from "@/models/Products";
 import connectDB from "@/utils/connectDB";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(request: NextRequest, URLParams: any) {
+export async function DELETE(request: NextRequest, URLParams: { params: { id: string; }}) {
   try {
     const id = URLParams.params.id;
     console.log(id);

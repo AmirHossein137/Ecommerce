@@ -7,7 +7,6 @@ import Image from "next/image";
 import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { Button, Input } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 interface IPayload {

@@ -24,13 +24,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(setLoading(true));
-
     axios
       .get("/api/get_products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err))
       .finally(() => dispatch(setLoading(false)));
-  }, [updateTable]);
+  }, [updateTable , dispatch]);
 
   return (
     <div className="bg-white h-full rounded-lg p-4">

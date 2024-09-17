@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useAppSelector } from "@/redux/hooks";
 import {
   Modal,
@@ -10,6 +11,7 @@ import {
 import { ShoppingCart } from "lucide-react";
 import CartProduct from "./CartProduct";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Cart = ({ cartCount }: any) => {
   const products = useAppSelector((state) => state.cartReducer);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

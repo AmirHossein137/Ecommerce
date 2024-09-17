@@ -2,6 +2,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import React from "react";
 import { Trash2 } from "lucide-react";
 import { removeFromCart } from "@/redux/features/cartSlice";
+import Image from "next/image";
 
 interface PropsTypes {
   id: string;
@@ -25,7 +26,7 @@ const CartProduct: React.FC<PropsTypes> = ({
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-4">
-        <img className="w-[80px] h-[80px] rounded-xl" src={img} alt={title} />
+        <Image className="w-[80px] h-[80px] rounded-xl" src={img} alt={title} />
         <div className="space-y-2">
           <h3 className="font-medium">{title}</h3>
           <p className="text-gray-600 text-sm">

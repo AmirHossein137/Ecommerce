@@ -33,7 +33,7 @@ const TrendingProducts = () => {
       })
       .catch((err) => console.log(err))
       .finally(() => dispatch(setLoading(false)));
-  }, []);
+  }, [dispatch]);
 
   console.log(products);
 
