@@ -26,7 +26,7 @@ const TrendingProducts = () => {
   useEffect(() => {
     dispatch(setLoading(true));
     axios
-      .get(`${process.env.BASE_URL}/api/get_products`)
+      .get('/api/get_products')
       .then((res) => {
         console.log(res);
         setProducts(res.data);
