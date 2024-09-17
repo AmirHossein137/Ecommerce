@@ -37,6 +37,18 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.accessToken = user.token;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
