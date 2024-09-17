@@ -2,9 +2,7 @@ import {
   LayoutDashboard,
   ShoppingCart,
   UserPen,
-  BadgeIndianRupee,
-  ChartBar,
-  Settings,
+  House
 } from "lucide-react";
 
 export const menus = [
@@ -24,18 +22,8 @@ export const menus = [
     href: "/admin/accounts",
   },
   {
-    title: "Transactions",
-    icon: <BadgeIndianRupee />,
-    href: "#",
-  },
-  {
-    title: "Analytics",
-    icon: <ChartBar />,
-    href: "#",
-  },
-  {
-    title: "Setting",
-    icon: <Settings />,
-    href: "#",
-  },
+    title : "Go To Home",
+    icon : <House />,
+    href : "/"
+  }
 ];

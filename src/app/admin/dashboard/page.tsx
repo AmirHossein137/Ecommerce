@@ -33,7 +33,7 @@ const Dashboard = () => {
   }, [updateTable]);
 
   return (
-    <div className="bg-white h-[calc(100vh-96)] rounded-lg p-4">
+    <div className="bg-white h-full rounded-lg p-4">
       <h2 className="text-3xl font-bold text-slate-800">All Products</h2>
       <div className="mt-4 h-[calc(100vh-180px)] overflow-y-auto">
         <table className="w-full">

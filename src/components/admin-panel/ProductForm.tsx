@@ -6,6 +6,9 @@ import axios from "axios";
 import Image from "next/image";
 import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
+import { Button, Input } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 interface IPayload {
   imgSrc: null | string;
@@ -25,15 +28,15 @@ const ProductForm = () => {
   });
 
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(
-      setLoading(true),
+    dispatch(setLoading(true)),
       axios
         .post("/api/add_product", payload)
         .then((res) => {
-            console.log(res)
+          console.log(res);
           toast.success("Product Added SuccessFully...");
           setPayload({
             imgSrc: null,
@@ -42,15 +45,15 @@ const ProductForm = () => {
             category: "",
             price: "",
           });
+          router.push("/admin/dashboard");
         })
         .catch((err) => console.log(err))
-        .finally(() => dispatch(setLoading(false)))
-    );
+        .finally(() => dispatch(setLoading(false)));
   };
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center gap-4">
         <Image
           className="max-h-[300px] w-auto object-contain rounded-md"
           src={payload.imgSrc ? payload.imgSrc : "/placeholder.png"}
@@ -76,9 +79,11 @@ const ProductForm = () => {
         />
       </div>
       <div>
-        <label className="block ml-1">Product Name</label>
-        <input
-          className="bg-gray-300 w-full px-4 py-2 border outline-pink rounded-md"
+        <Input
+          label="Product Name..."
+          classNames={{
+            innerWrapper: "h-20",
+          }}
           type="text"
           value={payload.name}
           onChange={(e) => setPayload({ ...payload, name: e.target.value })}
@@ -86,9 +91,11 @@ const ProductForm = () => {
         />
       </div>
       <div>
-        <label className="block ml-1">Product Category</label>
-        <input
-          className="bg-gray-300 w-full px-4 py-2 border outline-pink rounded-md"
+        <Input
+          label="Product Category..."
+          classNames={{
+            innerWrapper: "h-20",
+          }}
           type="text"
           value={payload.category}
           onChange={(e) => setPayload({ ...payload, category: e.target.value })}
@@ -96,9 +103,11 @@ const ProductForm = () => {
         />
       </div>
       <div>
-        <label className="block ml-1">Product Price</label>
-        <input
-          className="bg-gray-300 w-full px-4 py-2 border outline-pink rounded-md"
+        <Input
+          label="Product Price..."
+          classNames={{
+            innerWrapper: "h-20",
+          }}
           type="text"
           value={payload.price}
           onChange={(e) => setPayload({ ...payload, price: e.target.value })}
@@ -106,7 +115,14 @@ const ProductForm = () => {
         />
       </div>
       <div>
-        <button className="bg-pink-600 text-white px-8 py-2 rounded-md">Add</button>
+        <Button
+          type="submit"
+          className="w-full text-white"
+          size="lg"
+          color="success"
+        >
+          Add
+        </Button>
       </div>
     </form>
   );

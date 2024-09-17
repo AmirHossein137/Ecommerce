@@ -19,7 +19,7 @@ const NavBar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="py-4 bg-white top-0 sticky shadow-sm">
+    <div className="py-4 bg-white top-0 sticky z-40 shadow-sm">
       <div className="container mx-auto px-3">
         <div className="flex items-center justify-between">
           <Link href={"/"}>
@@ -27,7 +27,7 @@ const NavBar = () => {
           </Link>
           <div className="flex items-center gap-5">
             {!session?.user ? (
-              <Link href={'/signin'} className="border border-gray-200 p-2 rounded-md">
+              <Link href={'/signin'} className="border border-gray-300 bg-slate-200 py-2 px-6 rounded-lg transition duration-200 hover:bg-slate-300">
                 SignIn
               </Link>
             ) : (
